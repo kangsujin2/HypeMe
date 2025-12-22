@@ -31,7 +31,7 @@ export function HypePage() {
         id: crypto.randomUUID(),
         inputText,
         outputText,
-        createdAt: Date.now().toString(),
+        createdAt: Date.now(),
       };
 
       setRecords((prev) => [newItem, ...prev]);
