@@ -1,6 +1,7 @@
 // src/index.ts
 import express from "express";
 import cors from "cors";
+import "dotenv/config";
 import hypeRouter from "./routes/hype.route";
 
 const app = express();
