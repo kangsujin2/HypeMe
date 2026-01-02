@@ -11,20 +11,43 @@ export function HypeHistoryItem({ record }: HypeHistoryItemProps) {
   }).format(new Date(record.createdAt));
 
   return (
-    <article className="rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50/80 to-amber-50/60 px-3 py-3 text-xs text-orange-900 shadow-sm hover:shadow-md transition">
-      <header className="flex items-center justify-between mb-2">
-        <span className="inline-flex items-center gap-1 rounded-full bg-white/70 px-2 py-0.5 text-[10px] font-medium text-orange-500">
-          💭 my thought
+    <article
+      className="
+        relative
+        bg-[#FFF8ED]
+        border-2 border-[#2A2A2A]
+        rounded-xl
+        px-4 py-4
+        text-[#2A2A2A]
+      "
+    >
+      {/* header */}
+      <header className="flex items-center justify-between mb-3">
+        <span className="text-[10px] font-mono text-[#6F7F3C]">LOG ENTRY</span>
+        <span className="text-[10px] font-mono text-[#A89F94]">
+          {formattedDate}
         </span>
-        <span className="text-[10px] text-orange-300">{formattedDate}</span>
       </header>
 
-      <p className="mb-2 text-[11px] text-orange-600 line-clamp-2">
-        {record.inputText}
+      {/* input text */}
+      <p className="mb-3 text-[13px] leading-snug text-[#2A2A2A] line-clamp-2">
+        “{record.inputText}”
       </p>
 
-      <div className="rounded-xl bg-white/80 px-2.5 py-2 text-[11px] leading-relaxed shadow-inner">
-        <span className="mr-1 text-[10px] text-orange-400">HypeMe ·</span>
+      {/* output panel */}
+      <div
+        className="
+          border-2 border-[#2A2A2A]
+          rounded-md
+          bg-[#FFF3DB]
+          px-3 py-2
+          text-[13px]
+          leading-relaxed
+        "
+      >
+        <span className="mr-1 font-mono text-[10px] text-[#D17A22]">
+          HYPE →
+        </span>
         {record.outputText}
       </div>
     </article>

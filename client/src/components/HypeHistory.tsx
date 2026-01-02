@@ -8,28 +8,39 @@ interface HypeHistoryListProps {
 export function HypeHistory({ records }: HypeHistoryListProps) {
   if (records.length === 0) {
     return (
-      <section className="mt-6 rounded-2xl border border-dashed border-orange-100 bg-white/60 px-4 py-3 text-[11px] text-orange-400">
-        <p className="font-medium mb-1">No hype yet 🫧</p>
-        <p>
-          Write a line about your day, and your hype messages will start piling
-          up here.
+      <section
+        className="
+          border-2 border-[#2A2A2A]
+          rounded-xl
+          bg-[#FFF8ED]
+          px-6 py-5
+          text-[#2A2A2A]
+        "
+      >
+        <p className="mb-1 text-[11px] font-mono text-[#6F7F3C]">
+          NO SIGNAL DETECTED
+        </p>
+        <p className="text-sm leading-relaxed">
+          Write something and your hype signals will start showing up here.
         </p>
       </section>
     );
   }
 
   return (
-    <section className="mt-6">
-      <header className="mb-2 flex items-center justify-between">
-        <h2 className="text-xs font-semibold text-orange-600 flex items-center gap-1">
-          Your hype history
-          <span className="text-[10px] text-orange-400">
-            ({records.length})
-          </span>
+    <section className="space-y-3">
+      {/* header */}
+      <header className="flex items-center justify-between">
+        <h2 className="text-[11px] font-mono text-[#6F7F3C] tracking-wide">
+          HYPE LOG
         </h2>
+        <span className="text-[10px] font-mono text-[#A89F94]">
+          {records.length} ENTRIES
+        </span>
       </header>
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      {/* list */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {records.map((record) => (
           <HypeHistoryItem key={record.id} record={record} />
         ))}

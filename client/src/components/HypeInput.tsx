@@ -20,48 +20,80 @@ export function HypeInput({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isDisabled) {
-      onSubmit();
-    }
+    if (!isDisabled) onSubmit();
   };
 
   return (
-    <form className="space-y-3" onSubmit={handleSubmit}>
-      <div className="space-y-1.5">
-        <label className="text-[11px] text-orange-500">
-          You can write about your day like you’re texting a close friend ✍️
-        </label>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* INPUT PANEL */}
+      <div
+        className="
+          relative
+          bg-[#FFF8ED]
+          border-2 border-[#2A2A2A]
+          rounded-xl
+          px-6 py-5
+        "
+      >
+        {/* label */}
+        <p className="mb-2 text-[11px] font-mono text-[#6F7F3C]">
+          WRITE SOMETHING
+        </p>
 
-        <div className="relative">
-          <textarea
-            rows={4}
-            maxLength={MAX_LENGTH}
-            className="w-full text-sm bg-white border border-orange-200 rounded-2xl px-3 py-2.5 pr-14 resize-none focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300 placeholder:text-orange-300"
-            placeholder={`e.g. "I woke up at noon and did absolutely nothing all day…"`}
-            value={inputText}
-            onChange={(e) => onTextChange(e.target.value)}
-            disabled={isLoading}
-          />
-          <span className="pointer-events-none absolute bottom-2.5 right-3 text-[10px] text-orange-300">
-            {remainingLength} characters left
-          </span>
-        </div>
+        <textarea
+          rows={4}
+          maxLength={MAX_LENGTH}
+          disabled={isLoading}
+          value={inputText}
+          onChange={(e) => onTextChange(e.target.value)}
+          placeholder='e.g. "I woke up at noon and did absolutely nothing…"'
+          className="
+            w-full
+            bg-transparent
+            text-[15px]
+            leading-relaxed
+            text-[#2A2A2A]
+            placeholder:text-[#A89F94]
+            resize-none
+            focus:outline-none
+          "
+        />
+
+        {/* counter */}
+        <span className="absolute bottom-3 right-4 text-[10px] font-mono text-[#A89F94]">
+          {remainingLength}/{MAX_LENGTH}
+        </span>
       </div>
 
+      {/* BUTTON */}
       <button
         type="submit"
         disabled={isDisabled}
-        className="w-full py-2.5 text-sm font-semibold rounded-2xl bg-orange-500 text-white shadow-md hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-1"
+        className="
+          inline-flex
+          items-center
+          gap-2
+          bg-[#D17A22]
+          text-[#2A2A2A]
+          font-mono
+          px-6 py-3
+          border-2 border-[#2A2A2A]
+          rounded-md
+          shadow-[3px_3px_0_#2A2A2A]
+          disabled:opacity-50
+          disabled:cursor-not-allowed
+          active:translate-x-[2px]
+          active:translate-y-[2px]
+          transition
+        "
       >
         {isLoading ? (
           <>
-            <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/60 border-t-transparent" />
-            Generating hype…
+            <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#2A2A2A] border-t-transparent" />
+            GENERATING
           </>
         ) : (
-          <>
-            Get hyped <span>🍊</span>
-          </>
+          <>HYPE_ME</>
         )}
       </button>
     </form>

@@ -3,6 +3,7 @@ import { HypeInput } from "../components/HypeInput";
 import { HypeOutput } from "../components/HypeOutput";
 import { HypeHistory } from "../components/HypeHistory";
 import type { HypeRecord } from "../types/HypeRecord";
+import { HypeTitle } from "../components/HypeTitle";
 
 export function HypePage() {
   const [inputText, setInputText] = useState("");
@@ -24,13 +25,13 @@ export function HypePage() {
       });
 
       const data = await response.json();
-      const outputText = data.reply ?? "You're doing great! Keep it up! 🚀";
-      setOutputText(outputText);
+      const output = data.reply ?? "You're doing great.";
+      setOutputText(output);
 
       const newItem: HypeRecord = {
         id: crypto.randomUUID(),
         inputText,
-        outputText,
+        outputText: output,
         createdAt: Date.now(),
       };
 
@@ -38,17 +39,17 @@ export function HypePage() {
       setInputText("");
     } catch (err) {
       console.error(err);
-      setOutputText(
-        "An error occurred while generating hype. But you're still awesome! 🚀"
-      );
+      setOutputText("Something went wrong, but you're still solid.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-orange-50 p-4 flex justify-center">
-      <div className="w-full max-w-3xl space-y-4">
+    <main className="min-h-screen bg-[#F3EFE6] flex justify-center py-20">
+      {/* central panel */}
+      <section className="w-full max-w-[820px] space-y-8">
+        <HypeTitle />
         <HypeInput
           inputText={inputText}
           isLoading={isLoading}
@@ -57,8 +58,9 @@ export function HypePage() {
         />
 
         <HypeOutput record={outputText} />
+
         <HypeHistory records={records} />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
